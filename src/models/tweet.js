@@ -24,5 +24,9 @@ const tweetSchema = new mongoose.Schema({
 }, {timestamps : true});
 //timestamp automatically adds createdAt and updatedAt valuse to the json
 
+tweetSchema.virtual('contentWithEmail').get(function process(){
+    return `${this.content} \n Created by ${this.userEmail}`;
+});
+
 const Tweet = mongoose.model('Tweet', tweetSchema);//This model help to connect to the server
 module.exports = Tweet;
