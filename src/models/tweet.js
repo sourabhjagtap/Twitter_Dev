@@ -16,8 +16,7 @@ const tweetSchema = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Comment'
-        }
-        
+        }    
     ]
         
     
@@ -26,6 +25,12 @@ const tweetSchema = new mongoose.Schema({
 
 tweetSchema.virtual('contentWithEmail').get(function process(){
     return `${this.content} \n Created by ${this.userEmail}`;
+});
+
+tweetSchema.pre('save', function(next){//pre trigger
+    console.log('Inside a hook');
+    this.content = this.content + "....";
+    next();//points to the next middleware
 });
 
 const Tweet = mongoose.model('Tweet', tweetSchema);//This model help to connect to the server
