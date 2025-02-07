@@ -9,17 +9,4 @@ app.listen(3000, async ()=>{
     console.log("Server started at PORT:",3000);
     await connect();
     console.log("Mongodb connected");
-    /* To add new Tweet */
-    // const tweet =await Tweet.create({
-    //     content: 'Third tweet'
-    // });
-
-    /* To fetch new Tweet */
-    // const tweet = await Tweet.find();
-    //const tweetRepo = new TweetRepository();
-    //const tweet = await tweetRepo.getAll(0,4)
-    //const tweet = await tweetRepo.create({content: "New tweet with hook"});
-    console.log(tweet);
-
-    //console.log(tweet[0].contentWithEmail);
 });

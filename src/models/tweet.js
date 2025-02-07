@@ -7,31 +7,17 @@ const mongoose = require('mongoose');
 const tweetSchema = new mongoose.Schema({
     content :{
         type: String,
-        required : true
+        required : true,
+        max : [250, 'Tweet cannot be ore than 250 characers']
     },
-    userEmail: {//can or can not be there
-        type: String
-    },
-    comments:[
+    hashtags: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Comment'
-        }    
+            ref: 'Hashtag'
+        }
     ]
-        
-    
 }, {timestamps : true});
 //timestamp automatically adds createdAt and updatedAt valuse to the json
-
-tweetSchema.virtual('contentWithEmail').get(function process(){
-    return `${this.content} \n Created by ${this.userEmail}`;
-});
-
-tweetSchema.pre('save', function(next){//pre trigger
-    console.log('Inside a hook');
-    this.content = this.content + "....";
-    next();//points to the next middleware
-});
 
 const Tweet = mongoose.model('Tweet', tweetSchema);//This model help to connect to the server
 module.exports = Tweet;
