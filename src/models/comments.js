@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 /**
  * this schema gives the structure of the json document
  * that we have to store the data of tweet
@@ -16,4 +16,4 @@ const commentSchema = new mongoose.Schema({
 //timestamp automatically adds createdAt and updatedAt valuse to the json
 
 const Comment = mongoose.model('Comment', commentSchema);//This model help to connect to the server
-module.exports = Comment;
+export default Comment;
