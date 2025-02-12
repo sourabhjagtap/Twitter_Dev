@@ -10,12 +10,6 @@ const tweetSchema = new mongoose.Schema({
         required : true,
         max : [250, 'Tweet cannot be ore than 250 characers']
     },
-    hashtags: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Hashtag'
-        }
-    ]
 }, {timestamps : true});
 //timestamp automatically adds createdAt and updatedAt valuse to the json
 
