@@ -9,9 +9,21 @@ const commentSchema = new mongoose.Schema({
         type: String,
         required : true
     },
-    userEmail: {//can or can not be there
-        type: String
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
+    onModel : {
+        type : String,
+        required : true,
+        enum : ['Tweet' , 'Comment']//comment either on tweet or comment only
+    },
+    commentable : {
+        type : mongoose.Schema.Types.ObjectId,
+        required : true,
+        refPath : 'onModel'
+    }
 }, {timestamps : true});
 //timestamp automatically adds createdAt and updatedAt valuse to the json
 
