@@ -17,7 +17,12 @@ class TweetRepository extends CrudRepository {
     async getWithComments(id){
         try {
             //populate({path: 'comments'}) displays all the comments
-            const tweet = await Tweet.findById(id).populate({path: 'comments'}).lean();//lean convert the returned mongoose object to javascript object 
+            const tweet = await Tweet.findById(id).populate({
+                path: 'comments',
+                populate:{
+                    path:'comments'
+                }
+            }).lean();//lean convert the returned mongoose object to javascript object 
             return tweet; 
          } catch (error) {
              console.log(error);
